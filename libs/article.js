@@ -11,7 +11,10 @@ let write = (session, gall_id, subject, content, fl_data, ofl_data) => {
 			mode: 'write_verify'
 		};
 		protocol.post(protocol.API.article.token, body).then(({body, res}) => {
-			if (parseInt(body.msg) !== 5) reject(body);
+			if (parseInt(body.msg) !== 5) {
+				reject(body);
+				return;
+			}
 			let form = {
 				Block_key:  body.data,
 				FL_DATA:    fl_data || '',
@@ -48,6 +51,7 @@ let write = (session, gall_id, subject, content, fl_data, ofl_data) => {
 					cause: '오류',
 					body
 				});
+				return;
 			}
 			resolve({
 				result: true,
@@ -61,8 +65,14 @@ let write = (session, gall_id, subject, content, fl_data, ofl_data) => {
 
 let upload = (gall_id, images) => {
 	return new Promise((resolve, reject) => {
-		if (!gall_id) reject('no gall_id');
-		if (!(images instanceof Array) || images.length < 1) reject('no images arrays');
+		if (!gall_id) {
+			reject('no gall_id');
+			return;
+		 }
+		if (!(images instanceof Array) || images.length < 1) {
+			reject('no images arrays');
+			return;
+		}
 		let form = {
 			imgId: gall_id,
 			mode: 'write',
@@ -75,6 +85,7 @@ let upload = (gall_id, images) => {
 					result: false,
 					cause: `${image} not found`
 				});
+				return;
 			}
 			form[`upload[${image_idx++}]`] = fs.createReadStream(image);
 		}
@@ -87,6 +98,7 @@ let upload = (gall_id, images) => {
 					cause: '오류',
 					body
 				});
+				return;
 			}
 			resolve({
 				result: true,
