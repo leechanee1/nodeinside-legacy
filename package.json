@@ -1,0 +1,26 @@
+{
+  "name": "nodeinside-legacy",
+  "version": "1.0.0",
+  "description": "Node.js용 디시인사이드 비공식 API 모듈 (Legacy)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "dcinside",
+    "nodeinside",
+    "nodeinside-legacy",
+    "chungha"
+  ],
+  "author": "leechanee1",
+  "license": "MIT",
+  "dependencies": {
+    "cheerio": "^0.22.0",
+    "randomstring": "^1.1.5",
+    "request": "^2.79.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/leechanee1/nodeinside-legacy.git"
+  }
+}
