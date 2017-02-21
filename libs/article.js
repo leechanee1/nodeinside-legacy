@@ -44,7 +44,7 @@ let write = (session, gall_id, subject, content, fl_data, ofl_data) => {
 		}, err => {
 			reject(err);
 		}).then(({body, res}) => {
-			let regex = /<meta http-equiv="refresh" content="0; url=http:\/\/m\.dcinside\.com\/view\.php\?id=chungha&page=&no=(\d+)">/;
+			let regex = /<meta http-equiv="refresh" content="0; url=http:\/\/m\.dcinside\.com\/view\.php\?id=.+&page=&no=(\d+)">/;
 			if (!regex.test(body)) {
 				reject({
 					result: false,
